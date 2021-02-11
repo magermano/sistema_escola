@@ -1,0 +1,8 @@
+connect.py
+database.ini
+anotacoes.txt
+__pycache__/alunos.cpython-39.pyc
+__pycache__/config.cpython-39.pyc
+__pycache__/professores.cpython-39.pyc
+Controle_main/1_main_alunos.py
+Controle_main/2_main_alunosEprofs.py
