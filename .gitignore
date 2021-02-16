@@ -6,3 +6,7 @@ __pycache__/config.cpython-39.pyc
 __pycache__/professores.cpython-39.pyc
 Controle_main/1_main_alunos.py
 Controle_main/2_main_alunosEprofs.py
+Modelos_conceitual_logico/modelos.pdf
+Scripts_SQL/join_aluno_prof_curso.sql
+__pycache__/matriculas.cpython-39.pyc
+__pycache__/cursos.cpython-39.pyc

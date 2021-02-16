@@ -9,183 +9,305 @@ Facilitador: Jeferson Leal
 ​
 Campinas Tech Talents 2021
 '''
+
+#  Importa o módulo
 import sys
-import time
+
+#  Do arquivo importa a classe
 from alunos import Alunos
 from professores import Professores
+from cursos import Cursos
+from matriculas import Matriculas
 
-#  Inicialização de variáveis e objetos
-lista_opcoes = [   "0-) Sair \n"
-                  ,"1-) Ver lista de alunos"
-                  ,"2-) Incluir um novo aluno"
-                  ,"3-) Atualizar dados de um aluno"
-                  ,"4-) Excluir um aluno existente"
-                  ,"5-) Buscar um aluno"
-                  ,"6-) Ver lista de professores"
-                  ,"7-) Incluir um novo professor"
-                  ,"8-) Atualizar dados de um professor"
-                  ,"9-) Excluir um professor existente"
-                  ,"10-) Buscar um professor"]
+#  Inicialização de variáveis.
+menu_principal = ["0-) Sair \n",
+                  "1-) Alunos",
+                  "2-) Professores",
+                  "3-) Cursos",
+                  "4-) Matriculas"]
 
-#  Iteração com o usuário e dar as boas vindas
-nome_login = input("Olá! Por favor entre com o nome de usuário...\n")
+menu_aluno     = ["0-) Voltar ao Menu Principal \n",
+                  "1-) Ver lista de alunos",
+                  "2-) Incluir um novo aluno",
+                  "3-) Atualizar dados de um aluno",
+                  "4-) Excluir um aluno existente",
+                  "5-) Buscar um aluno"]
 
-#  Loop para manter na memória
+menu_professor = ["0-) Voltar ao Menu Principal \n",
+                  "1-) Ver lista de professores",
+                  "2-) Incluir um novo professor",
+                  "3-) Atualizar dados de um professor",
+                  "4-) Excluir um professor existente",
+                  "5-) Buscar um professor"]
+
+menu_curso     = ["0-) Voltar ao Menu Principal \n",
+                  "1-) Ver lista de cursos",
+                  "2-) Incluir um novo curso",
+                  "3-) Atualizar dados de um curso",
+                  "4-) Excluir um curso existente",
+                  "5-) Buscar um curso"]
+
+menu_matricula  = ["0-) Voltar ao Menu Principal \n",
+                  "1-) Ver lista de matriculas de Alunos",
+                  "2-) Incluir uma nova matricula de Aluno",
+                  "3-) Ver lista de matriculas de Professor",
+                  "4-) Incluir uma nova matricula de Professor",
+                  "5-) Imprimir relação Matrícula-Aluno-Professor-Curso"
+                  ]
+
+
+#  Pede o nome do usuário e dá mensagem de boas vindas.
+nome_login = input("Olá! Entre com o nome de usuário:\n")
+print(f"\nSeja bem-vindo, {nome_login}! Esse é o menu de navegação:")
+
+#  Loop principal.
 while True:
-    #  Mostrar as boas vindas e as opções
-    print(f"\nOlá! Seja bem-vinde {nome_login}! Escolha uma opção:")
-    for opcao in lista_opcoes:
+    print("\n-        MENU PRINCIPAL       - ")
+    #  Loop para mostrar a lista de opções.
+    for opcao in menu_principal:
         print(opcao)
-    opcao_selecionada = int(input("Escolha uma opção \n"))
-    #  Condicionais para controlar a navegação do programa
-    if opcao_selecionada == 0: #Sai do programa
+    # TODO: validação de seleção de menu.
+    #  Pede para o usuário entrar com a opção desejada.
+    opcao_menu = int(input("\nEscolha uma opção: "))
+
+    #  Condicionais para controlar a navegação do programa.
+    #  Sai do programa.
+    if opcao_menu == 0:
         print("Você saiu do sistema.")
         sys.exit()
     
 
-    #  Imprimir lista de alunos
-    elif opcao_selecionada == 1:
+    #  Imprime opções para Alunos.
+    elif opcao_menu == 1:
+        #  Instancia objeto da classe Alunos.
         aluno = Alunos()
-        aluno.listar()
 
-
-    #  Incluir um novo aluno
-    elif opcao_selecionada == 2: 
+        #  Loop Alunos.
         while True:
-            nome_aluno = input("Digite o nome do Aluno:\n")
-            cpf_aluno = input("Digite o CPF do Aluno:\n")
-            data_nascimento_aluno = input("Digite a data de nascimento do Aluno:\n")
-            telefone_aluno = input("Digite o telefone do Aluno:\n")
-
-            aluno = Alunos()
-
-            aluno.incluir(nome=nome_aluno,
-                            cpf=cpf_aluno,
-                            data_nasc=data_nascimento_aluno,
-                            telefone=telefone_aluno)
+            print("\n-        MENU ALUNOS       - ")
+            #  Loop para mostrar a lista de opções.
+            for opcao in menu_aluno:
+                print(opcao)
+            #  Pede para o usuário entrar com a opção desejada.
+            opcao_aluno = int(input("Escolha uma opção: \n"))
             
-            #  Solicitando a saída para o usuário    
-            controle_insert = input("Deseja incluir mais um aluno? (Digite 'n' ou 'N' para sair) \n")
-            if len(controle_insert) == 1:
-                if controle_insert == "n" or controle_insert == "N" or controle_insert == "S" or controle_insert == "s":
-                    if controle_insert.upper() == "N":
-                        print("Saíndo da inclusão de alunos...")
-                        break
-    
+            #  Sai do Menu Alunos e retorna ao menu principal.
+            if opcao_aluno == 0:
+                print("Você saiu do MENU ALUNOS.")
+                break
 
-    #  Atualizar dados de um aluno
-    elif opcao_selecionada == 3:
-        aluno = Alunos()
-        aluno.listar()
-        input_do_usuario = int(input("Digite um ID para atualizar os dados do aluno\n"))
+            #  Imprimir lista de alunos.
+            elif opcao_aluno == 1:
+                if aluno.isVazia():
+                    aluno.listaVazia()
+                else:
+                    print("\n-        LISTA DE ALUNOS       - ")
+                    aluno.listar()
+                    #  Pede ao usuário que aperte Enter para prosseguir.
+                    input("Aperte ENTER para continuar.")
 
-        nome_aluno = input("Digite o nome do Aluno:\n")
-        cpf_aluno = input("Digite o CPF do Aluno\n")
-        data_nascimento_aluno = input("Digite a data de nascimento do Aluno:\n")
-        telefone_aluno = input("Digite o telefone do Aluno\n")
+            #  Incluir um novo aluno.
+            elif opcao_aluno == 2: 
+                aluno.loopIncluir()
+            
+            #  Atualizar dados de um aluno.
+            elif opcao_aluno == 3:
+                # Caso a lista esteja vazia, o método retorna True e o método listaVazia() é executado.
+                # Caso contrário, apenas faz a listagem.
+                if aluno.isVazia():
+                    aluno.listaVazia()
+                else:
+                    aluno.listar()
+                    aluno.loopAtualizar()
 
-        aluno.atualizar(nome=nome_aluno,
-                        cpf=cpf_aluno,
-                        data_nasc=data_nascimento_aluno,
-                        telefone=telefone_aluno,
-                        id_aluno=input_do_usuario)
+            #  Excluir um aluno existente.
+            elif opcao_aluno == 4:
+                if aluno.isVazia():
+                    print("Não há alunos cadastrados. Saindo de exclusão de alunos.")
+                else:
+                    aluno.listar()
+                    aluno.loopExcluir()
+            
+            # Buscar aluno a partir de um nome.
+            elif opcao_aluno == 5:
+                if aluno.isVazia():
+                    print("Não há alunos cadastrados. Saindo de busca de alunos.")
+                else:
+                    aluno.loopBuscar()
 
+########################################################################################################################
 
-    #  Excluir um aluno existente.
-    elif opcao_selecionada == 4:
-        #TODO: fazer o loop de exclusão e verificação de input.
-        aluno = Alunos()
-        aluno.listar()
-        input_do_usuario = int(input("Digite um ID para a exclusão do aluno \n"))
-        
-        aluno.excluir(input_do_usuario)
-        aluno.listar()
-    
-
-    # Buscar aluno a partir de um nome.
-    elif opcao_selecionada == 5:
-        input_do_usuario = input("Insira o nome do aluno que deseja pesquisar:\n")
-
-        aluno = Alunos()
-        aluno.buscarAluno(input_do_usuario)
-        #TODO: fazer o loop e perguntar se quer pesquisar novamente;
-
-    #####################################################################################################################
-
-     #  Imprimir lista de professor
-    elif opcao_selecionada == 6:
+    #  Imprime opções para Professores
+    elif opcao_menu == 2:
+        #  Instancia objeto da classe Professores.
         professor = Professores()
-        professor.listarProfessor()
 
-
-    #  Incluir um novo professor
-    elif opcao_selecionada == 7: 
+        #  Loop Professores.
         while True:
-            nome_professor = input("Digite o nome do Professor:\n")
-            cpf_professor = input("Digite o CPF do Professor:\n")
-            data_nascimento_professor = input("Digite a data de nascimento do Professor:\n")
-            telefone_professor = input("Digite o telefone do Professor:\n")
-            formacao = input("Digite a formação do Professor:\n")
-
-            professor = Professores()
-
-            professor.incluirProfessor(nome=nome_professor,
-                            cpf=cpf_professor,
-                            data_nasc=data_nascimento_professor,
-                            telefone=telefone_professor,
-                            formacao = formacao)
+            print("\n-        MENU PROFESSORES       - ")
+            #  Loop para mostrar a lista de opções.
+            for opcao in menu_professor:
+                print(opcao)
+            #  Pede para o usuário entrar com a opção desejada.
+            opcao_professor = int(input("Escolha uma opção: \n"))
             
-            #  Solicitando a saída para o usuário    
-            controle_insert = input("Deseja incluir mais um professor? (Digite 'n' ou 'N' para sair) \n")
-            if len(controle_insert) == 1:
-                if controle_insert == "n" or controle_insert == "N" or controle_insert == "S" or controle_insert == "s":
-                    if controle_insert.upper() == "N":
-                        print("Saindo da inclusão de professor...")
-                        break
-    
+            #  Sai do Menu Professores e retorna ao Menu Principal.
+            if opcao_professor == 0:
+                print("Você saiu do MENU PROFESSORES.")
+                break
 
-    #  Atualizar dados de um professor
-    elif opcao_selecionada == 8:
-        professor = Professores()
-        professor.listarProfessor()
-        input_do_usuario = int(input("Digite um ID para atualizar os dados do professor\n"))
+            #  Imprimir lista de professores.
+            elif opcao_professor == 1:
+                if professor.isProfessorVazia():
+                    professor.listaProfessorVazia()
+                else:
+                    print("\n-        LISTA DE PROFESSORES       - ")
+                    professor.listarProfessor()
+                    #  Pede ao usuário que aperte Enter para prosseguir.
+                    input("Aperte ENTER para continuar.")
 
-        nome_professor = input("Digite o nome do Professor:\n")
-        cpf_professor = input("Digite o CPF do Professor:\n")
-        data_nascimento_professor = input("Digite a data de nascimento do Professor:\n")
-        telefone_professor = input("Digite o telefone do Professor:\n")
-        formacao = input("Digite a formação do Professor:\n")
+            #  Incluir um novo professor
+            elif opcao_professor == 2: 
+                while True:
+                    professor.loopIncluirProfessor()
+            
+            #  Atualizar dados de um professor
+            elif opcao_professor == 3:
+                # Caso a lista esteja vazia, o método retorna True e o método listaVazia() é executado.
+                # Caso contrário, apenas faz a listagem.
+                if professor.isProfessorVazia():
+                    professor.listaProfessorVazia()
+                else:
+                    professor.listarProfessor()
+                    professor.loopAtualizarProfessor()
 
-        professor.atualizarProfessor(nome=nome_professor,
-                        cpf=cpf_professor,
-                        data_nasc=data_nascimento_professor,
-                        telefone=telefone_professor,
-                        formacao = formacao,
-                        id_professor=input_do_usuario,)
-
-
-    #  Excluir um professor existente.
-    elif opcao_selecionada == 9:
-        #TODO: fazer o loop de exclusão e verificação de input.
-        professor = Professores()
-        professor.listarProfessor()
-        input_do_usuario = int(input("Digite um ID para a exclusão do professor: \n"))
-        
-        professor.excluirProfessor(input_do_usuario)
-        professor.listarProfessor()
-    
-
-    # Buscar professor a partir de um nome.
-    elif opcao_selecionada == 10:
-        input_do_usuario = input("Insira o nome do professor que deseja pesquisar:\n")
-
-        professor = Professores()
-        professor.buscarProfessor(input_do_usuario)
-
-        #TODO: fazer o loop e perguntar se quer pesquisar novamente;
+            #  Excluir um professor existente.
+            elif opcao_professor == 4:
+                if professor.isProfessorVazia():
+                    print("Não há professores cadastrados. Saindo de exclusão de professores.")
+                else:
+                    professor.listarProfessor()
+                    professor.loopExcluirProfessor()
+            
+            # Buscar professor a partir de um nome.
+            elif opcao_professor == 5:
+                if professor.isProfessorVazia():
+                    print("Não há professores cadastrados. Saindo de busca de professores.")
+                else:
+                    professor.buscarProfessor()
 
     #######################################################################################################
 
-    """PARTE DO CURSO"""
+    #  Imprime opções para CURSOS.
+    elif opcao_menu == 3:
+        #  Instancia objeto da classe Cursos.
+        curso = Cursos()
 
-    time.sleep(1)
+        #  Loop Cursos.
+        while True:
+            print("\n-        MENU CURSOS       - ")
+            #  Loop para mostrar a lista de opções.
+            for opcao in menu_curso:
+                print(opcao)
+            #  Pede para o usuário entrar com a opção desejada.
+            opcao_curso = int(input("Escolha uma opção: \n"))
+            
+            #  Sai do Menu Cursos e retorna ao Menu Principal.
+            if opcao_curso == 0:
+                print("Você saiu do MENU CURSOS.")
+                break
+
+            #  Imprimir lista de cursos.
+            elif opcao_curso == 1:
+                if curso.isCursoVazia():
+                    curso.listaCursoVazia()
+                else:
+                    print("\n-        LISTA DE CURSOS       - ")
+                    curso.listarCurso()
+                    #  Pede ao usuário que aperte Enter para prosseguir.
+                    input("Aperte ENTER para continuar.")
+
+            #  Incluir um novo curso.
+            elif opcao_curso == 2: 
+                curso.loopIncluirCurso()
+            
+            #  Atualizar dados de um curso.
+            elif opcao_curso == 3:
+                # Caso a lista esteja vazia, o método retorna True e o método listaCursoVazia() é executado.
+                # Caso contrário, apenas faz a listagem.
+                if curso.isCursoVazia():
+                    curso.listaCursoVazia()
+                else:
+                    curso.listarCurso()
+                    curso.loopAtualizarCurso()
+
+            #  Excluir um curso existente.
+            elif opcao_curso == 4:
+                if curso.isCursoVazia():
+                    print("Não há cursos cadastrados.Saindo de exclusão de cursos.")
+                else:
+                    curso.listarCurso()
+                    curso.loopExcluirCurso()
+            
+            # Buscar curso a partir de um nome.
+            elif opcao_curso == 5:
+                if curso.isCursoVazia():
+                    print("Não há CURSOS cadastrados. Saindo de busca de CURSOS.")
+                else:
+                    curso.loopBuscarCurso()
+
+    ##############################################################
+
+    elif opcao_menu == 4:
+        #  Instancia objeto da classe Matrícula.
+        matricula = Matriculas()
+
+        #  Loop Matrículas.
+        while True:
+            print("\n-        MENU MATRÍCULAS       - ")
+            #  Loop para mostrar a lista de opções.
+            for opcao in menu_matricula:
+                print(opcao)
+            #  Pede para o usuário entrar com a opção desejada.
+            opcao_matricula = int(input("Escolha uma opção: \n"))
+            
+            #  Sai do Menu Matrículas e retorna ao Menu Principal.
+            if opcao_matricula == 0:
+                print("Você saiu do MENU MATRÍCULAS.")
+                break
+
+            #  Imprimir lista de matrículas de alunos.
+            elif opcao_matricula == 1:
+                if matricula.isMatriculaVazia():
+                    matricula.listaMatriculaVazia()
+                else:
+                    print("\n-        LISTA DE MATRÍCULAS ALUNOS      - ")
+                    matricula.listarJoinMatricula()
+                    #  Pede ao usuário que aperte Enter para prosseguir.
+                    input("Aperte ENTER para continuar.")
+
+            #  Incluir uma nova matrícula de aluno.
+            elif opcao_matricula == 2: 
+                while True:                    
+                    matricula.loopIncluirMatriculaAluno()
+
+            #  Imprimir lista com os professores que lecionam tal matéria.
+            elif opcao_matricula == 3:
+                if matricula.isMatriculaProfessorVazia():
+                    matricula.listaMatriculaProfessorVazia()
+                else:
+                    print("\n-        LISTA DE MATRÍCULAS PROFESSORES      - ")
+                    matricula.listarJoinMatriculaProfessor()
+                    #  Pede ao usuário que aperte Enter para prosseguir.
+                    input("Aperte ENTER para continuar.")
+
+            #  Incluir um novo professor pra lecionar tal matéria
+            elif opcao_matricula == 4: 
+                while True:
+                    matricula.loopIncluirMatriculaProfessor()
+
+            elif opcao_matricula == 5:
+                print("\n-        LISTA DE MATRÍCULAS-ALUNOS-PROFESSORES-CURSOS      - ")
+                matricula.listarJoinMatriculaProfessorAluno()
+                #  Pede ao usuário que aperte Enter para prosseguir.
+                input("Aperte ENTER para continuar.")
