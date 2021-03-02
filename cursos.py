@@ -197,7 +197,7 @@ class Cursos():
             row = cur.fetchone()
 
             while row is not None:
-                if nome_pesquisado in row[1]:
+                if nome_pesquisado.upper() in row[1].upper():
                     print(f"\nID: {row[0]}\nCurso: {row[1]}\nPeriodo: {row[2]}\nCarga Horária: {row[3]}\nVagas: {row[4]}\n")
                 row = cur.fetchone()
             

@@ -201,8 +201,9 @@ class Professores():
             row = cur.fetchone()
 
             while row is not None:
-                if nome_pesquisado in row[1]:
+                if nome_pesquisado.upper() in row[1].upper():
                     print(f"\nID: {row[0]}\nNome: {row[1]}\nCPF: {row[2]}\nData de Nascimento: {row[3].strftime('%d/%m/%Y')}\nTelefone: {row[4]}\nFormação: {row[5]}\n")
+
                 row = cur.fetchone()
             
             cur.close()
@@ -221,11 +222,10 @@ class Professores():
                             cpf=input("Digite o CPF do PROFESSOR:\n"),
                             data_nasc=input("Digite a data de nascimento do PROFESSOR:\n"),
                             telefone=input("Digite o telefone do PROFESSOR:\n"),
-                            tformacao=input("Digite a formação do PROFESSOR:\n")
-                            )
+                            formacao=input("Digite a formação do PROFESSOR:\n"))
 
             #  Solicitando a saída para o usuário    
-            controle_insert = input("Deseja incluir mais um PROFESSOR ? (Digite 'N' ou 'n' para sair: ")
+            controle_insert = input("Deseja incluir mais um PROFESSOR ? Digite 'N' ou 'n' para sair: ")
 
             #  Verifica se a resposta começa com 'n' ou 'N'.
             if controle_insert.lower().startswith('n'):
@@ -245,7 +245,7 @@ class Professores():
                             id_professor=input_do_usuario)
             
             #  Solicitando a saída para o usuário
-            controle_insert = input("Deseja atualizar mais um PROFESSOR? (Digite 'N' ou 'n' para sair: ")
+            controle_insert = input("Deseja atualizar mais um PROFESSOR? Digite 'N' ou 'n' para sair: ")
 
             #  Verifica se a resposta começa com 'n' ou 'N'.
             if controle_insert.lower().startswith('n'):
@@ -259,7 +259,7 @@ class Professores():
             self.buscarProfessor(input_do_usuario)
 
             #  Solicitando a saída para o usuário
-            controle_insert = input("Deseja buscar mais um PROFESSOR? (Digite 'N' ou 'n' para sair: ")
+            controle_insert = input("Deseja buscar mais um PROFESSOR? Digite 'N' ou 'n' para sair: ")
 
             #  Verifica se a resposta começa com 'n' ou 'N'.
             if controle_insert.lower().startswith('n'):
@@ -280,7 +280,7 @@ class Professores():
 
             else:
                 #  Solicitando a saída para o usuário
-                controle_insert = input("Deseja excluir mais um PROFESSOR? (Digite 'N' ou 'n' para sair: ")
+                controle_insert = input("Deseja excluir mais um PROFESSOR? Digite 'N' ou 'n' para sair: ")
 
                 #  Verifica se a resposta começa com 'n' ou 'N'.
                 if controle_insert.lower().startswith('n'):

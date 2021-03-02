@@ -10,6 +10,8 @@ Facilitador: Jeferson Leal
 Campinas Tech Talents 2021
 '''
 
+#Programa Principal do Sistema de Matrícula
+
 #  Importa o módulo
 import sys
 
@@ -57,6 +59,7 @@ menu_matricula  = ["0-) Voltar ao Menu Principal \n",
 
 
 #  Pede o nome do usuário e dá mensagem de boas vindas.
+print("\n-    Sistema de Matricula      -\n")
 nome_login = input("Olá! Entre com o nome de usuário:\n")
 print(f"\nSeja bem-vindo, {nome_login}! Esse é o menu de navegação:")
 
@@ -168,8 +171,7 @@ while True:
 
             #  Incluir um novo professor
             elif opcao_professor == 2: 
-                while True:
-                    professor.loopIncluirProfessor()
+                professor.loopIncluirProfessor()
             
             #  Atualizar dados de um professor
             elif opcao_professor == 3:
@@ -194,7 +196,7 @@ while True:
                 if professor.isProfessorVazia():
                     print("Não há professores cadastrados. Saindo de busca de professores.")
                 else:
-                    professor.buscarProfessor()
+                    professor.loopBuscarProfessor()
 
     #######################################################################################################
 
@@ -287,8 +289,7 @@ while True:
                     input("Aperte ENTER para continuar.")
 
             #  Incluir uma nova matrícula de aluno.
-            elif opcao_matricula == 2: 
-                while True:                    
+            elif opcao_matricula == 2:                   
                     matricula.loopIncluirMatriculaAluno()
 
             #  Imprimir lista com os professores que lecionam tal matéria.
@@ -302,8 +303,7 @@ while True:
                     input("Aperte ENTER para continuar.")
 
             #  Incluir um novo professor pra lecionar tal matéria
-            elif opcao_matricula == 4: 
-                while True:
+            elif opcao_matricula == 4:
                     matricula.loopIncluirMatriculaProfessor()
 
             elif opcao_matricula == 5:

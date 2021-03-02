@@ -1,4 +1,4 @@
-#  Cria a classe alunos que permite inserir, atualizar,
+#  Cria a classe ALUNOS que permite inserir, atualizar,
 #  listar, buscar e deletar alunos no banco de dados.
 
 import psycopg2
@@ -195,10 +195,11 @@ class Alunos():
             row = cur.fetchone()
 
             while row is not None:
-                if nome_pesquisado in row[1]:
+                if nome_pesquisado.upper() in row[1].upper():
                     print(f"\nID: {row[0]}\nNome: {row[1]}\nCPF: {row[2]}\nData de Nascimento: {row[3].strftime('%d/%m/%Y')}\nTelefone: {row[4]}\n")
+               
                 row = cur.fetchone()
-            
+
             cur.close()
 
         except (Exception, psycopg2.DatabaseError) as error:
@@ -277,12 +278,3 @@ class Alunos():
                 if controle_insert.lower().startswith('n'):
                     print("Saindo da exclusão de alunos...")
                     break
-
-# Executa este bloco caso o arquivo seja executado a partir dele mesmo.
-if __name__ == '__main__':
-    aluno = Alunos()
-    # Insere um aluno.
-    aluno.incluir(nome='Rafaela',
-                    cpf='65214587565',
-                    data_nasc='12/02/1982',
-                    telefone='19952641525')

@@ -1,3 +1,5 @@
+#Cria a classe MATRICULAS que permite matricular alunos e professores em cursos.
+
 import psycopg2
 from config import config
 
@@ -267,7 +269,7 @@ class Matriculas():
             curso = Cursos()
             #  Pergunta se o usuário deseja visualizar os professores cadastrados,
             #  pois pode não saber o ID de cabeça.
-            insert_visualizar_professores = input("Deseja visualizar os professores cadastrados? Digite 'S' ou 's' para visualizar: ")
+            insert_visualizar_professores = input("Deseja visualizar os PROFESSORES cadastrados? Digite 'S' ou 's' para visualizar: ")
             if insert_visualizar_professores.lower().startswith('s'):
                 print("\n-        LISTA DE PROFESSORES       - ")
                 professor.listarProfessor()
@@ -276,7 +278,7 @@ class Matriculas():
 
             #  Pergunta se o usuário deseja visualizar os cursos cadastrados,
             #  pois pode não saber o ID de cabeça.
-            insert_visualizar_cursos = input("Deseja visualizar os cursos cadastrados? Digite 'S' ou 's' para visualizar: ")
+            insert_visualizar_cursos = input("Deseja visualizar os CURSOS cadastrados? Digite 'S' ou 's' para visualizar: ")
             if insert_visualizar_cursos.lower().startswith('s'):
                 print("\n-        LISTA DE CURSOS       - ")
                 curso.listarCurso()
